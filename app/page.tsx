@@ -10,11 +10,11 @@ export default function Home() {
 
         <span className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium text-indigo-300 backdrop-blur">
           <span className="h-1.5 w-1.5 rounded-full bg-indigo-400" />
-          AI-Powered Oral Exam
+          AI-Powered Exam
         </span>
 
         <h1 className="mt-5 bg-gradient-to-r from-white via-indigo-200 to-violet-300 bg-clip-text text-5xl font-bold tracking-tight text-transparent sm:text-6xl">
-          AI Oral Testing Tool
+          AI Testing Tool
         </h1>
 
         <p className="mx-auto mt-5 max-w-md text-lg leading-relaxed text-slate-400">

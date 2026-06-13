@@ -1,20 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { pickQuestions, QUESTIONS_PER_TEST } from "@/lib/questions";
+import { pickSession, QUESTIONS_PER_TEST } from "@/lib/questions";
 
-// Owns the test flow: which question we're on and the answer for each one.
-// Questions are drawn at random from the pool on the client (after mount) to
-// avoid a server/client hydration mismatch.
+// Owns the test flow: which topic this session is on, which question we're on,
+// and the answer for each one. A topic + its questions are drawn at random on
+// the client (after mount) to avoid a server/client hydration mismatch.
 export function useTest() {
+  const [topic, setTopic] = useState("");
   const [questions, setQuestions] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
 
   useEffect(() => {
-    const picked = pickQuestions(QUESTIONS_PER_TEST);
-    setQuestions(picked);
-    setAnswers(picked.map(() => ""));
+    const session = pickSession(QUESTIONS_PER_TEST);
+    setTopic(session.topic);
+    setQuestions(session.questions);
+    setAnswers(session.questions.map(() => ""));
   }, []);
 
   const ready = questions.length > 0;
@@ -36,15 +38,17 @@ export function useTest() {
     setCurrentIndex((i) => i + 1);
   }
 
-  // Start over with a fresh random set of questions.
+  // Start over with a fresh random topic and set of questions.
   function reset() {
-    const picked = pickQuestions(QUESTIONS_PER_TEST);
-    setQuestions(picked);
-    setAnswers(picked.map(() => ""));
+    const session = pickSession(QUESTIONS_PER_TEST);
+    setTopic(session.topic);
+    setQuestions(session.questions);
+    setAnswers(session.questions.map(() => ""));
     setCurrentIndex(0);
   }
 
   return {
+    topic,
     questions,
     total: questions.length,
     ready,

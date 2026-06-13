@@ -3,7 +3,7 @@ import "./globals.css";
 import Backdrop from "@/components/Backdrop";
 
 export const metadata: Metadata = {
-  title: "AI Oral Testing Tool",
+  title: "AI Testing Tool",
   description: "Answer 3 questions out loud and get an AI-scored result.",
 };
 

@@ -265,6 +265,13 @@ export default function TestPage() {
         key={test.currentIndex}
         className="w-full max-w-xl animate-fade-in rounded-2xl border border-white/10 bg-white/5 p-8 shadow-2xl backdrop-blur"
       >
+        {/* Topic for this session */}
+        {test.topic && (
+          <p className="mb-4 text-center text-xs font-semibold uppercase tracking-widest text-indigo-300">
+            {test.topic}
+          </p>
+        )}
+
         {/* Progress dots */}
         <div className="mb-6 flex justify-center gap-2">
           {test.questions.map((_, i) => (
